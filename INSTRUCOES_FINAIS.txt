@@ -1,0 +1,41 @@
+INSTRUÇÕES PARA FINALIZAR O DASHBOARD
+═════════════════════════════════════════════════════════════════
+
+KENDY, faltam os IDs dos arquivos do Google Drive!
+
+FAÇA ISSO AGORA (5 MIN):
+
+1. Vá em: https://drive.google.com/drive/folders/19rdV9iPih_1BJydEXfQ01alwJeVUAOnj
+
+2. SELECIONE TODA A PASTA "POSTS_ORGANIZADOS"
+
+3. Clique direito → "Compartilhar"
+
+4. Em "Acesso geral" selecione: "Qualquer pessoa com o link"
+
+5. Marque: "Aplicar a todos os itens dentro da pasta"
+
+6. Clique: "Concluído"
+
+PRONTO! Agora todos os arquivos estão públicos.
+
+═════════════════════════════════════════════════════════════════
+
+DEPOIS:
+
+Execute este comando no PowerShell para subir o index.html:
+
+cd "C:\Users\Gabriel\Downloads\INSTAGRAM BEAT CLUB"
+git init
+git add index.html
+git commit -m "The Beat Dashboard"
+git branch -M main
+git remote add origin https://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@github.com/gabrielkendy/thebeat-apresentacao.git
+git push -u origin main --force
+
+═════════════════════════════════════════════════════════════════
+
+SEU LINK FINAL:
+https://gabrielkendy.github.io/thebeat-apresentacao
+
+═════════════════════════════════════════════════════════════════

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Beat Life Club - Janeiro 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:wght@400;700&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --oceano: #0c1f32;
+            --dourado: #cba052;
+            --floresta: #0a3a1e;
+            --areia: #efe4ce;
+            --salvia: #809e80;
+            --ceu: #88bee7;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: linear-gradient(135deg, var(--oceano) 0%, var(--floresta) 100%);
+            color: var(--areia);
+            min-height: 100vh;
+            padding: 60px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 80px;
+            padding-bottom: 40px;
+            border-bottom: 2px solid var(--dourado);
+        }
+        
+        .logo {
+            font-size: 64px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            font-family: 'Libre Bodoni', serif;
+            font-size: 40px;
+            font-style: italic;
+            color: var(--dourado);
+            margin-bottom: 30px;
+        }
+        
+        .tagline {
+            font-size: 14px;
+            letter-spacing: 3px;
+            color: var(--salvia);
+            text-transform: uppercase;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 40px;
+        }
+        
+        .stat-box strong {
+            display: block;
+            font-size: 48px;
+            color: var(--dourado);
+            margin-bottom: 5px;
+        }
+        
+        .stat-box span {
+            font-size: 12px;
+            color: var(--ceu);
+            letter-spacing: 2px;
+        }
+        
+        .post {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid rgba(203, 160, 82, 0.3);
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 60px;
+            transition: all 0.3s;
+        }
+        
+        .post:hover {
+            border-color: var(--dourado);
+            box-shadow: 0 20px 60px rgba(203, 160, 82, 0.2);
+        }
+        
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 40px;
+        }
+        
+        .post-number {
+            font-size: 13px;
+            color: var(--salvia);
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+        
+        .post-title {
+            font-family: 'Libre Bodoni', serif;
+            font-size: 38px;
+            color: var(--dourado);
+            margin-bottom: 15px;
+        }
+        
+        .post-meta {
+            font-size: 14px;
+            color: var(--areia);
+            display: flex;
+            gap: 20px;
+        }
+        
+        .badge {
+            background: var(--dourado);
+            color: var(--oceano);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        
+        .caption {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 16px;
+            border-left: 4px solid var(--dourado);
+        }
+        
+        .caption h3 {
+            font-family: 'Libre Bodoni', serif;
+            color: var(--dourado);
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+        
+        .caption p {
+            line-height: 1.9;
+            margin-bottom: 15px;
+        }
+        
+        .hashtags {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(203, 160, 82, 0.2);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .hashtag {
+            color: var(--ceu);
+            background: rgba(136, 190, 231, 0.1);
+            padding: 6px 14px;
+            border-radius: 15px;
+            font-size: 13px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            border-top: 1px solid rgba(203, 160, 82, 0.3);
+            margin-top: 80px;
+            color: var(--salvia);
+        }
+        
+        .footer-logo {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .footer-subtitle {
+            font-family: 'Libre Bodoni', serif;
+            font-size: 18px;
+            font-style: italic;
+            color: var(--dourado);
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">THE BEAT</div>
+            <div class="subtitle">life club</div>
+            <div class="tagline">Calendário Editorial · Janeiro 2025</div>
+            <div class="stats">
+                <div class="stat-box"><strong>13</strong><span>POSTS</span></div>
+                <div class="stat-box"><strong>5</strong><span>CARROSSEIS</span></div>
+                <div class="stat-box"><strong>7</strong><span>VÍDEOS</span></div>
+            </div>
+        </header>
+        
+        <div id="posts"></div>
+        
+        <footer>
+            <div class="footer-logo">THE BEAT</div>
+            <div class="footer-subtitle">life club</div>
+            <p>Premium Wellness Ecosystem · Belo Horizonte, Brasil</p>
+        </footer>
+    </div>
+    
+    <script>
+        const posts = [
+            {
+                id: 1,
+                title: 'Ecosystem',
+                type: 'Carrossel',
+                date: '06/01/2025',
+                time: '07:30',
+                caption: `Treinar bem não é questão de esforço bruto.
+
+É arquitetura.
+
+É integração entre medicina de performance, nutrição clínico-genética, fisioterapia funcional e treino personalizado.
+
+Tudo sob o mesmo teto. Tudo orientado para o mesmo objetivo: a sua melhor versão.
+
+The Beat Life Club. Onde corpo, mente e performance se encontram.`,
+                hashtags: '#TheBeatLifeClub #MedicinaDePerformance #NutriçãoClínica #FisioterapiaFuncional #TreinoPersonalizado'
+            },
+            {
+                id: 2,
+                title: 'Banner Street',
+                type: 'Vídeo',
+                date: '08/01/2025',
+                time: '12:30',
+                caption: `Em breve, Belo Horizonte respira diferente.
+
+Um novo conceito de bem-estar está chegando.
+
+The Beat Life Club.`,
+                hashtags: '#TheBeatLifeClub #BeloHorizonte #EmBreve #PremiumWellness'
+            },
+            {
+                id: 3,
+                title: 'O Que os Hormônios Dizem',
+                type: 'Carrossel',
+                date: '10/01/2025',
+                time: '18:30',
+                caption: `Seu corpo fala. O tempo todo.
+
+Através dos hormônios.
+
+Cortisol te avisa sobre estresse. Testosterona sobre vitalidade. Insulina sobre metabolismo.
+
+No The Beat, não adivinhamos. Medimos. Analisamos. Agimos.
+
+Medicina de performance guiada por dados, não por achismos.`,
+                hashtags: '#TheBeatLifeClub #MedicinaDePerformance #Hormônios #Saúde #PrevenãoInteligente'
+            },
+            {
+                id: 4,
+                title: 'Beat + Nike',
+                type: 'Vídeo',
+                date: '13/01/2025',
+                time: '07:30',
+                caption: `Equipamentos de elite. Tecnologia de ponta.
+
+A parceria oficial Nike está chegando ao The Beat Life Club.
+
+Onde performance encontra inovação.`,
+                hashtags: '#TheBeatLifeClub #Nike #Performance #Equipamentos #Tecnologia'
+            },
+            {
+                id: 5,
+                title: 'Geração Ozempic',
+                type: 'Carrossel',
+                date: '15/01/2025',
+                time: '12:30',
+                caption: `A geração Ozempic descobriu o atalho.
+
+Mas ninguém falou do preço.
+
+Perda de massa muscular. Metabolismo comprometido. Efeitos rebote.
+
+Existe outro caminho: medicina de performance integrada, nutrição clínico-genética, treino científico.
+
+Resultados reais. Sustentáveis. Saudáveis.
+
+The Beat Life Club. Evolução sem atalhos.`,
+                hashtags: '#TheBeatLifeClub #Ozempic #MedicinaDePerformance #SaúdeReal #EmagrecimentoSustentável'
+            },
+            {
+                id: 6,
+                title: 'Helicóptero',
+                type: 'Vídeo',
+                date: '17/01/2025',
+                time: '18:30',
+                caption: `Vista de cima, tudo faz sentido.
+
+A integração completa. O ecossistema premium. A localização estratégica.
+
+The Beat Life Club em Belo Horizonte.`,
+                hashtags: '#TheBeatLifeClub #BeloHorizonte #VistaAérea #Localização #PremiumWellness'
+            },
+            {
+                id: 7,
+                title: 'Sauna - Biohack Cardíaco',
+                type: 'Carrossel',
+                date: '20/01/2025',
+                time: '07:30',
+                caption: `63% de redução no risco cardíaco.
+
+Não é promessa. É estudo publicado.
+
+Sauna 4-7x por semana demonstrou resultados cardiovasculares superiores a décadas de pesquisa.
+
+The Beat Life Club: onde biohacking encontra evidência científica.`,
+                hashtags: '#TheBeatLifeClub #Sauna #Biohacking #SaúdeCardíaca #CiênciaAplicada'
+            },
+            {
+                id: 8,
+                title: 'Kettlebell Nike',
+                type: 'Vídeo',
+                date: '22/01/2025',
+                time: '12:30',
+                caption: `Força funcional. Movimento real.
+
+Equipamentos Nike de alta performance chegando ao The Beat.
+
+Treino que transforma.`,
+                hashtags: '#TheBeatLifeClub #Nike #Kettlebell #TreinoFuncional #Força'
+            },
+            {
+                id: 9,
+                title: 'Bem-Estar Redefinido',
+                type: 'Carrossel',
+                date: '24/01/2025',
+                time: '18:30',
+                caption: `Bem-estar não é spa.
+
+É medicina de performance. Nutrição clínico-genética. Fisioterapia funcional. Treino científico.
+
+Tudo integrado. Tudo personalizado. Tudo sob o mesmo teto.
+
+The Beat Life Club. Onde sua saúde é uma ciência.`,
+                hashtags: '#TheBeatLifeClub #BemEstar #Saúde #Performance #Integração'
+            },
+            {
+                id: 10,
+                title: 'Lapidando',
+                type: 'Vídeo',
+                date: '27/01/2025',
+                time: '07:30',
+                caption: `Diamante bruto tem potencial.
+
+Diamante lapidado tem valor.
+
+The Beat Life Club. Lapidando sua melhor versão.`,
+                hashtags: '#TheBeatLifeClub #Transformação #Performance #EvoluçãoPessoal'
+            },
+            {
+                id: 11,
+                title: 'Red Bull Partnership',
+                type: 'Vídeo',
+                date: '29/01/2025',
+                time: '12:30',
+                caption: `Energia não é só bebida. É mentalidade.
+
+Red Bull + The Beat Life Club.
+
+Performance máxima em cada detalhe.`,
+                hashtags: '#TheBeatLifeClub #RedBull #Energia #Performance #Partnership'
+            },
+            {
+                id: 12,
+                title: 'Cinematic City',
+                type: 'Vídeo',
+                date: '31/01/2025',
+                time: '18:30',
+                caption: `Belo Horizonte. Cidade que respira ambição.
+
+Em breve, um novo marco de excelência.
+
+The Beat Life Club.`,
+                hashtags: '#TheBeatLifeClub #BeloHorizonte #Cidade #Premium #Excelência'
+            },
+            {
+                id: 13,
+                title: 'Banner Mockup',
+                type: 'Imagem',
+                date: '03/02/2025',
+                time: '07:30',
+                caption: `A cidade já sente.
+
+Em breve, um novo símbolo de excelência em bem-estar.
+
+The Beat Life Club. Chegando a Belo Horizonte.`,
+                hashtags: '#TheBeatLifeClub #BeloHorizonte #EmBreve #Outdoor #Lançamento'
+            }
+        ];
+        
+        const container = document.getElementById('posts');
+        
+        posts.forEach(post => {
+            const hashtags = post.hashtags.split(' ');
+            
+            container.innerHTML += `
+                <div class="post">
+                    <div class="post-header">
+                        <div>
+                            <div class="post-number">POST ${String(post.id).padStart(2, '0')}</div>
+                            <h2 class="post-title">${post.title}</h2>
+                            <div class="post-meta">
+                                <span>📅 ${post.date}</span>
+                                <span>⏰ ${post.time}</span>
+                            </div>
+                        </div>
+                        <div class="badge">${post.type}</div>
+                    </div>
+                    <div class="caption">
+                        <h3>Legenda</h3>
+                        ${post.caption.split('\n\n').map(p => `<p>${p}</p>`).join('')}
+                        <div class="hashtags">
+                            ${hashtags.map(tag => `<span class="hashtag">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>

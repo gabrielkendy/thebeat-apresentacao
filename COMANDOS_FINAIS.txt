@@ -1,0 +1,41 @@
+═══════════════════════════════════════════════════════════════════
+🚀 COMANDOS PARA FINALIZAR O DEPLOY
+═══════════════════════════════════════════════════════════════════
+
+COPIE E COLE ISTO NO POWERSHELL:
+
+cd "C:\Users\Gabriel\Downloads\INSTAGRAM BEAT CLUB\deploy_online"
+git remote add origin https://github.com/gabrielkendy/thebeat-apresentacao.git
+git branch -M main
+git push -u origin main
+
+═══════════════════════════════════════════════════════════════════
+
+Se pedir autenticação do GitHub:
+- Use seu usuário: gabrielkendy
+- Senha: Use um Personal Access Token (não a senha normal)
+
+Como criar token (se necessário):
+1. Abra: https://github.com/settings/tokens
+2. Clique: Generate new token (classic)
+3. Marque: repo
+4. Copie o token gerado
+5. Use como senha no Git
+
+═══════════════════════════════════════════════════════════════════
+
+DEPOIS DO PUSH:
+
+1. Acesse: https://github.com/gabrielkendy/thebeat-apresentacao/settings/pages
+2. Em "Branch", selecione: main
+3. Clique: Save
+4. Aguarde 2 minutos
+5. Seu link será:
+
+   🔗 https://gabrielkendy.github.io/thebeat-apresentacao
+
+═══════════════════════════════════════════════════════════════════
+
+ESSE É O LINK PERMANENTE PARA ENVIAR AO CLIENTE! 🎯
+
+═══════════════════════════════════════════════════════════════════

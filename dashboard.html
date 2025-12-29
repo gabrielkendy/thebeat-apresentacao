@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Beat Life Club - Content Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:wght@400;700&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --oceano-beat: #0c1f32;
+            --dourado-beat: #cba052;
+            --floresta-beat: #0a3a1e;
+            --preto-beat: #222223;
+            --ceu-beat: #88bee7;
+            --areia-beat: #efe4ce;
+            --salvia-beat: #809e80;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: linear-gradient(135deg, var(--oceano-beat) 0%, var(--floresta-beat) 100%);
+            color: var(--areia-beat);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* HEADER */
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid var(--dourado-beat);
+            animation: fadeInDown 0.8s ease;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 56px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--areia-beat);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        
+        .logo-subtitle {
+            font-family: 'Libre Bodoni', serif;
+            font-size: 32px;
+            font-style: italic;
+            color: var(--dourado-beat);
+            margin-bottom: 25px;
+        }
+        
+        .tagline {
+            font-size: 13px;
+            color: var(--salvia-beat);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
+            font-size: 12px;
+        }
+        
+        .stat-item {
+            color: var(--ceu-beat);
+        }
+        
+        .stat-item strong {
+            color: var(--dourado-beat);
+            font-size: 18px;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        /* GRID DE CARDS */
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+            animation: fadeIn 1s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .post-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(203, 160, 82, 0.3);
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: slideUp 0.6s ease backwards;
+        }
+        
+        .post-card:nth-child(1) { animation-delay: 0.1s; }
+        .post-card:nth-child(2) { animation-delay: 0.2s; }
+        .post-card:nth-child(3) { animation-delay: 0.3s; }
+        .post-card:nth-child(4) { animation-delay: 0.4s; }
+        .post-card:nth-child(5) { animation-delay: 0.5s; }
+        .post-card:nth-child(6) { animation-delay: 0.6s; }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .post-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--dourado-beat);
+            box-shadow: 0 15px 50px rgba(203, 160, 82, 0.4);
+        }
+        
+        .post-thumbnail {
+            width: 100%;
+            height: 240px;
+            background: linear-gradient(135deg, var(--oceano-beat), var(--floresta-beat));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: var(--dourado-beat);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .post-thumbnail img,
+        .post-thumbnail video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+        
+        .post-card:hover .post-thumbnail img,
+        .post-card:hover .post-thumbnail video {
+            transform: scale(1.1);
+        }
+        
+        .post-type-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, rgba(203, 160, 82, 0.95), rgba(203, 160, 82, 0.8));
+            color: var(--oceano-beat);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .post-info {
+            padding: 25px;
+            background: rgba(12, 31, 50, 0.6);
+        }
+        
+        .post-number {
+            font-size: 11px;
+            color: var(--salvia-beat);
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+        
+        .post-title {
+            font-family: 'Libre Bodoni', serif;
+            font-size: 22px;
+            color: var(--dourado-beat);
+            margin-bottom: 15px;
+            line-height: 1.3;
+            font-weight: 700;
+        }
+        
+        .post-preview {
+            font-size: 13px;
+            color: var(--areia-beat);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            opacity: 0.9;
+            height: 60px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+        
+        .post-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            color: var(--salvia-beat);
+            padding-top: 15px;
+            border-top: 1px solid rgba(203, 160, 82, 0.2);
+        }
+        
+        .view-button {
+            background: linear-gradient(135deg, var(--dourado-beat), #d4af6a);
+            color: var(--oceano-beat);
+            border: none;
+            padding: 10px 24px;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .view-button:hover {
+            background: var(--areia-beat);
+            transform: scale(1.08);
+            box-shadow: 0 5px 20px rgba(203, 160, 82, 0.4);
+        }
+        
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(12, 31, 50, 0.97);
+            backdrop-filter: blur(30px);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 40px 20px;
+            animation: modalFadeIn 0.3s ease;
+        }
+        
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, var(--oceano-beat), var(--floresta-beat));
+            border: 2px solid var(--dourado-beat);
+            border-radius: 20px;
+            max-width: 1000px;
+            width: 100%;
+            max-height: 95vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
+            animation: modalSlideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        @keyframes modalSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .modal-close {
+            position: sticky;
+            top: 20px;
+            right: 20px;
+            float: right;
+            background: rgba(203, 160, 82, 0.2);
+            border: 2px solid var(--dourado-beat);
+            color: var(--dourado-beat);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            z-index: 10;
+            font-weight: 300;
+        }
+        
+        .modal-close:hover {
+            background: var(--dourado-beat);
+            color: var(--oceano-beat);
+            transform: rotate(90deg) scale(1.1);
+        }
+        
+        .modal-header {
+            padding: 50px 50px 30px 50px;
+            border-bottom: 1px solid rgba(203, 160, 82, 0.3);
+            clear: both;
+        }
+        
+        .modal-title {
+            font-family: 'Libre Bodoni', serif;
+            font-size: 38px;
+            color: var(--dourado-beat);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .modal-meta {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 13px;
+            color: var(--salvia-beat);
+        }
+        
+        .modal-body {
+            padding: 40px 50px 50px 50px;
+        }
+        
+        /* CAROUSEL */
+        .carousel-container {
+            margin-bottom: 40px;
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        
+        .carousel-slides {
+            position: relative;
+            width: 100%;
+            background: #000;
+        }
+        
+        .carousel-slide {
+            display: none;
+            width: 100%;
+        }
+        
+        .carousel-slide.active {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .carousel-slide img,
+        .carousel-slide video {
+            width: 100%;
+            height: auto;
+            display: block;
+            max-height: 600px;
+            object-fit: contain;
+            background: #000;
+        }
+        
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(203, 160, 82, 0.3);
+            border: 2px solid var(--dourado-beat);
+            color: var(--dourado-beat);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        
+        .carousel-nav:hover {
+            background: var(--dourado-beat);
+            color: var(--oceano-beat);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .carousel-prev {
+            left: 20px;
+        }
+        
+        .carousel-next {
+            right: 20px;
+        }
+        
+        .carousel-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(12, 31, 50, 0.9);
+            color: var(--dourado-beat);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 700;
+            border: 1px solid var(--dourado-beat);
+            backdrop-filter: blur(10px);
+        }
+        
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(203, 160, 82, 0.5);
+        }
+        
+        .carousel-dot:hover {
+            background: rgba(203, 160, 82, 0.6);
+            transform: scale(1.2);
+        }
+        
+        .carousel-dot.active {
+            background: var(--dourado-beat);
+            width: 35px;
+            border-radius: 6px;
+        }
+        
+        /* CAPTION */
+        .modal-caption {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 16px;
+            border-left: 4px solid var(--dourado-beat);
+        }
+        
+        .modal-caption h3 {
+            font-family: 'Libre Bodoni', serif;
+            color: var(--dourado-beat);
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .modal-caption p {
+            color: var(--areia-beat);
+            line-height: 1.9;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .hashtags {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(203, 160, 82, 0.2);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .hashtag {
+            color: var(--ceu-beat);
+            font-size: 13px;
+            background: rgba(136, 190, 231, 0.1);
+            padding: 6px 12px;
+            border-radius: 15px;
+            border: 1px solid rgba(136, 190, 231, 0.3);
+            transition: all 0.3s;
+        }
+        
+        .hashtag:hover {
+            background: rgba(136, 190, 231, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 50px 20px;
+            border-top: 1px solid rgba(203, 160, 82, 0.3);
+            margin-top: 80px;
+        }
+        
+        footer p {
+            color: var(--salvia-beat);
+            font-size: 13px;
+            letter-spacing: 2px;
+        }
+        
+        /* LOADING */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--salvia-beat);
+        }
+        
+        .loading-spinner {
+            border: 3px solid rgba(203, 160, 82, 0.2);
+            border-top: 3px solid var(--dourado-beat);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo {
+                font-size: 36px;
+            }
+            
+            .logo-subtitle {
+                font-size: 24px;
+            }
+            
+            .modal-header,
+            .modal-body {
+                padding: 30px 25px;
+            }
+            
+            .modal-title {
+                font-size: 28px;
+            }
+            
+            .carousel-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+        
+        /* SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--oceano-beat);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--dourado-beat);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--areia-beat);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">THE BEAT</div>
+            <div class="logo-subtitle">life club</div>
+            <div class="tagline">Content Hub · Janeiro 2025</div>
+            <div class="stats">
+                <div class="stat-item">
+                    <strong>13</strong>
+                    POSTS
+                </div>
+                <div class="stat-item">
+                    <strong>5</strong>
+                    CARROSSEIS
+                </div>
+                <div class="stat-item">
+                    <strong>7</strong>
+                    VÍDEOS
+                </div>
+                <div class="stat-item">
+                    <strong>1</strong>
+                    IMAGEM
+                </div>
+            </div>
+        </header>
+        
+        <div class="posts-grid" id="postsGrid">
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <p>Carregando posts...</p>
+            </div>
+        </div>
+        
+        <footer>
+            <p>The Beat Life Club · Premium Wellness Ecosystem · Belo Horizonte, Brasil</p>
+        </footer>
+    </div>
+    
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <div class="modal-meta" id="modalMeta"></div>
+            </div>
+            <div class="modal-body">
+                <div class="carousel-container" id="carouselContainer"></div>
+                <div class="modal-caption" id="modalCaption"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let currentSlide = 0;
+        let totalSlides = 0;
+        let currentPost = null;
+        
+        const posts = [
+            {id: 1, folder: 'POST_01_CARROSSEL_Ecosystem', type: 'Carrossel', title: 'Ecosystem', date: '06/01/2025', time: '07:30'},
+            {id: 2, folder: 'POST_02_VIDEO_BannerStreet', type: 'Vídeo', title: 'Banner Street', date: '08/01/2025', time: '12:30'},
+            {id: 3, folder: 'POST_03_CARROSSEL_Hormonios', type: 'Carrossel', title: 'O Que os Hormônios Dizem', date: '10/01/2025', time: '18:30'},
+            {id: 4, folder: 'POST_04_VIDEO_BeatNike', type: 'Vídeo', title: 'Beat + Nike', date: '13/01/2025', time: '07:30'},
+            {id: 5, folder: 'POST_05_CARROSSEL_Ozempic', type: 'Carrossel', title: 'Geração Ozempic', date: '15/01/2025', time: '12:30'},
+            {id: 6, folder: 'POST_06_VIDEO_Helicoptero', type: 'Vídeo', title: 'Helicóptero', date: '17/01/2025', time: '18:30'},
+            {id: 7, folder: 'POST_07_CARROSSEL_Sauna', type: 'Carrossel', title: 'Sauna - Biohack Cardíaco', date: '20/01/2025', time: '07:30'},
+            {id: 8, folder: 'POST_08_VIDEO_Kettlebell', type: 'Vídeo', title: 'Kettlebell Nike', date: '22/01/2025', time: '12:30'},
+            {id: 9, folder: 'POST_09_CARROSSEL_BemEstar', type: 'Carrossel', title: 'Bem-Estar Redefinido', date: '24/01/2025', time: '18:30'},
+            {id: 10, folder: 'POST_10_VIDEO_Lapidando', type: 'Vídeo', title: 'Lapidando', date: '27/01/2025', time: '07:30'},
+            {id: 11, folder: 'POST_11_VIDEO_RedBull', type: 'Vídeo', title: 'Red Bull Partnership', date: '29/01/2025', time: '12:30'},
+            {id: 12, folder: 'POST_12_VIDEO_Cinematic', type: 'Vídeo', title: 'Cinematic City', date: '31/01/2025', time: '18:30'},
+            {id: 13, folder: 'POST_13_VIDEO_BannerMockup', type: 'Imagem', title: 'Banner Mockup', date: '03/02/2025', time: '07:30'}
+        ];
+        
+        const previews = {
+            1: 'Treinar bem não é questão de esforço bruto. É arquitetura.',
+            2: 'Em breve, Belo Horizonte respira diferente.',
+            3: 'Seu corpo fala. O tempo todo. Através dos hormônios.',
+            4: 'Equipamentos de elite. Tecnologia de ponta.',
+            5: 'A geração Ozempic descobriu o atalho. Mas ninguém falou do preço.',
+            6: 'Vista de cima, tudo faz sentido.',
+            7: '63% de redução no risco cardíaco. Não é promessa. É estudo publicado.',
+            8: 'Força funcional. Movimento real.',
+            9: 'Um clube que define o significado de bem-estar.',
+            10: 'Diamante bruto tem potencial. Diamante lapidado tem valor.',
+            11: 'Energia não é só bebida. É mentalidade.',
+            12: 'Belo Horizonte. Cidade que respira ambição.',
+            13: 'A cidade já sente. Em breve, um novo símbolo de excelência.'
+        };
+        
+        function renderCards() {
+            const grid = document.getElementById('postsGrid');
+            grid.innerHTML = posts.map((post, index) => `
+                <div class="post-card" onclick="openModal(${post.id})" style="animation-delay: ${index * 0.1}s">
+                    <div class="post-thumbnail">
+                        <div class="post-type-badge">${post.type}</div>
+                        <div style="font-size: 70px;">${getIcon(post.type)}</div>
+                    </div>
+                    <div class="post-info">
+                        <div class="post-number">POST ${String(post.id).padStart(2, '0')}</div>
+                        <h3 class="post-title">${post.title}</h3>
+                        <p class="post-preview">${previews[post.id]}</p>
+                        <div class="post-meta">
+                            <span>📅 ${post.date} · ⏰ ${post.time}</span>
+                            <button class="view-button">Ver Post</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function getIcon(type) {
+            if (type === 'Carrossel') return '📊';
+            if (type === 'Vídeo') return '🎬';
+            return '🖼️';
+        }
+        
+        async function openModal(postId) {
+            currentPost = posts.find(p => p.id === postId);
+            
+            document.getElementById('modalTitle').textContent = currentPost.title;
+            document.getElementById('modalMeta').innerHTML = `
+                <span>📌 POST ${String(currentPost.id).padStart(2, '0')}</span>
+                <span>·</span>
+                <span>📱 ${currentPost.type}</span>
+                <span>·</span>
+                <span>📅 ${currentPost.date}</span>
+                <span>·</span>
+                <span>⏰ ${currentPost.time}</span>
+            `;
+            
+            // Load media and caption
+            await loadPostContent(currentPost.folder);
+            
+            // Show modal
+            document.getElementById('modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        async function loadPostContent(folder) {
+            const carouselDiv = document.getElementById('carouselContainer');
+            const captionDiv = document.getElementById('modalCaption');
+            
+            // Load caption from file
+            try {
+                const response = await fetch(`POSTS_ORGANIZADOS/${folder}/LEGENDA.txt`);
+                const captionText = await response.text();
+                
+                // Clean caption
+                const lines = captionText.split('\n').filter(l => !l.startsWith('━') && l.trim());
+                const captionClean = lines.slice(3).join('\n').trim();
+                
+                // Extract hashtags
+                const hashtagRegex = /#[\w\u00C0-\u017F]+/g;
+                const hashtags = captionClean.match(hashtagRegex) || [];
+                const captionWithoutHashtags = captionClean.replace(hashtagRegex, '').trim();
+                
+                captionDiv.innerHTML = `
+                    <h3>Legenda</h3>
+                    ${captionWithoutHashtags.split('\n\n').map(p => `<p>${p}</p>`).join('')}
+                    ${hashtags.length ? `
+                        <div class="hashtags">
+                            ${hashtags.map(tag => `<span class="hashtag">${tag}</span>`).join('')}
+                        </div>
+                    ` : ''}
+                `;
+            } catch (e) {
+                captionDiv.innerHTML = '<p>Legenda não disponível</p>';
+            }
+            
+            // Create carousel with media files
+            createCarousel(folder);
+        }
+        
+        function createCarousel(folder) {
+            const carouselDiv = document.getElementById('carouselContainer');
+            
+            // Placeholder carousel
+            carouselDiv.innerHTML = `
+                <div class="carousel-slides">
+                    <div class="carousel-slide active">
+                        <div style="background: var(--oceano-beat); padding: 100px 40px; text-align: center;">
+                            <p style="color: var(--dourado-beat); font-size: 60px; margin-bottom: 20px;">📁</p>
+                            <p style="color: var(--areia-beat); font-size: 18px; margin-bottom: 15px;">Arquivos de mídia localizados em:</p>
+                            <code style="color: var(--salvia-beat); font-size: 13px; background: rgba(255,255,255,0.1); padding: 10px 20px; border-radius: 8px; display: inline-block;">
+                                POSTS_ORGANIZADOS/${folder}
+                            </code>
+                            <p style="color: var(--areia-beat); font-size: 14px; margin-top: 30px; opacity: 0.7;">
+                                💡 Para carregar os arquivos reais, execute o servidor Python incluído
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            currentSlide = 0;
+        }
+        
+        // Initialize
+        renderCards();
+        
+        // Close modal on outside click
+        document.getElementById('modal').addEventListener('click', (e) => {
+            if (e.target.id === 'modal') closeModal();
+        });
+        
+        // Close on ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>

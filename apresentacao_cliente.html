@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Beat Life Club - Apresentação de Conteúdo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:wght@400;700&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --oceano-beat: #0c1f32;
+            --dourado-beat: #cba052;
+            --floresta-beat: #0a3a1e;
+            --preto-beat: #222223;
+            --ceu-beat: #88bee7;
+            --areia-beat: #efe4ce;
+            --salvia-beat: #809e80;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: linear-gradient(135deg, var(--oceano-beat) 0%, var(--floresta-beat) 100%);
+            color: var(--areia-beat);
+            overflow-x: hidden;
+        }
+        
+        /* LOADING SCREEN */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--oceano-beat), var(--floresta-beat));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .loading-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 72px;
+            font-weight: 700;
+            color: var(--areia-beat);
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .loading-subtitle {
+            font-family: 'Libre Bodoni', serif;
+            font-size: 36px;
+            font-style: italic;
+            color: var(--dourado-beat);
+            margin-bottom: 40px;
+        }
+        
+        .loading-bar {
+            width: 300px;
+            height: 4px;
+            background: rgba(203, 160, 82, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .loading-progress {
+            height: 100%;
+            background: var(--dourado-beat);
+            width: 0%;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 20px var(--dourado-beat);
+        }
+        
+        .loading-text {
+            margin-top: 20px;
+            color: var(--salvia-beat);
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(203, 160, 82, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(136, 190, 231, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+        
+        .hero-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 80px;
+            font-weight: 700;
+            letter-spacing: 5px;
+            color: var(--areia-beat);
+            margin-bottom: 15px;
+            animation: fadeInDown 1s ease;
+        }
+        
+        .hero-subtitle {
+            font-family: 'Libre Bodoni', serif;
+            font-size: 48px;
+            font-style: italic;
+            color: var(--dourado-beat);
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease 0.2s backwards;
+        }
+        
+        .hero-tagline {
+            font-size: 18px;
+            color: var(--salvia-beat);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+            font-weight: 300;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.6s backwards;
+        }
+        
+        .stat-box {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 56px;
+            font-weight: 700;
+            color: var(--dourado-beat);
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 13px;
+            color: var(--ceu-beat);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .scroll-indicator {
+            margin-top: 60px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        .scroll-indicator svg {
+            width: 30px;
+            height: 30px;
+            fill: var(--dourado-beat);
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* POSTS SECTION */
+        .posts-section {
+            padding: 100px 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        
+        .section-title {
+            font-family: 'Libre Bodoni', serif;
+            font-size: 48px;
+            color: var(--dourado-beat);
+            margin-bottom: 20px;
+        }
+        
+        .section-subtitle {
+            font-size: 16px;
+            color: var(--salvia-beat);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        /* POST FULL DISPLAY */
+        .post-full {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid rgba(203, 160, 82, 0.3);
+            border-radius: 24px;
+            padding: 60px;
+            margin-bottom: 80px;
+            backdrop-filter: blur(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .post-full:hover {
+            border-color: var(--dourado-beat);
+            box-shadow: 0 20px 60px rgba(203, 160, 82, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .post-title-group {
+            flex: 1;
+        }
+        
+        .post-number {
+            font-size: 14px;
+            color: var(--salvia-beat);
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+        
+        .post-title {
+            font-family: 'Libre Bodoni', serif;
+            font-size: 42px;
+            color: var(--dourado-beat);
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        
+        .post-meta {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            font-size: 14px;
+            color: var(--areia-beat);
+        }
+        
+        .post-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .post-type-badge {
+            background: linear-gradient(135deg, var(--dourado-beat), #d4af6a);
+            color: var(--oceano-beat);
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        /* MEDIA GALLERY */
+        .media-gallery {
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .gallery-main {
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #000;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .gallery-slide {
+            display: none;
+            width: 100%;
+        }
+        
+        .gallery-slide.active {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .gallery-slide img,
+        .gallery-slide video {
+            width: 100%;
+            height: auto;
+            display: block;
+            max-height: 700px;
+            object-fit: contain;
+        }
+        
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(203, 160, 82, 0.3);
+            border: 2px solid var(--dourado-beat);
+            color: var(--dourado-beat);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+        
+        .gallery-nav:hover {
+            background: var(--dourado-beat);
+            color: var(--oceano-beat);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .gallery-prev {
+            left: 20px;
+        }
+        
+        .gallery-next {
+            right: 20px;
+        }
+        
+        .gallery-counter {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(12, 31, 50, 0.95);
+            color: var(--dourado-beat);
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 700;
+            border: 2px solid var(--dourado-beat);
+            backdrop-filter: blur(10px);
+        }
+        
+        .gallery-thumbs {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+        }
+        
+        .gallery-thumb {
+            width: 100%;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            opacity: 0.6;
+        }
+        
+        .gallery-thumb:hover {
+            opacity: 1;
+            border-color: var(--salvia-beat);
+            transform: scale(1.05);
+        }
+        
+        .gallery-thumb.active {
+            opacity: 1;
+            border-color: var(--dourado-beat);
+            box-shadow: 0 0 20px rgba(203, 160, 82, 0.4);
+        }
+        
+        .gallery-thumb img,
+        .gallery-thumb video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* CAPTION */
+        .post-caption {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 16px;
+            border-left: 4px solid var(--dourado-beat);
+        }
+        
+        .caption-title {
+            font-family: 'Libre Bodoni', serif;
+            font-size: 24px;
+            color: var(--dourado-beat);
+            margin-bottom: 25px;
+        }
+        
+        .caption-text {
+            color: var(--areia-beat);
+            line-height: 2;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+        
+        .caption-hashtags {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(203, 160, 82, 0.2);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .hashtag {
+            color: var(--ceu-beat);
+            font-size: 14px;
+            background: rgba(136, 190, 231, 0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(136, 190, 231, 0.3);
+            transition: all 0.3s;
+        }
+        
+        .hashtag:hover {
+            background: rgba(136, 190, 231, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 80px 20px;
+            border-top: 1px solid rgba(203, 160, 82, 0.3);
+        }
+        
+        .footer-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--areia-beat);
+            margin-bottom: 10px;
+        }
+        
+        .footer-subtitle {
+            font-family: 'Libre Bodoni', serif;
+            font-size: 20px;
+            font-style: italic;
+            color: var(--dourado-beat);
+            margin-bottom: 30px;
+        }
+        
+        .footer-text {
+            color: var(--salvia-beat);
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero-logo {
+                font-size: 48px;
+            }
+            
+            .hero-subtitle {
+                font-size: 32px;
+            }
+            
+            .hero-stats {
+                gap: 30px;
+            }
+            
+            .stat-number {
+                font-size: 42px;
+            }
+            
+            .section-title {
+                font-size: 36px;
+            }
+            
+            .post-full {
+                padding: 30px;
+            }
+            
+            .post-title {
+                font-size: 32px;
+            }
+            
+            .gallery-nav {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+            }
+            
+            .gallery-thumbs {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            }
+            
+            .gallery-thumb {
+                height: 60px;
+            }
+        }
+        
+        /* SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--oceano-beat);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--dourado-beat);
+            border-radius: 6px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--areia-beat);
+        }
+    </style>
+</head>
+<body>
+    <!-- LOADING SCREEN -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-logo">THE BEAT</div>
+        <div class="loading-subtitle">life club</div>
+        <div class="loading-bar">
+            <div class="loading-progress" id="loadingProgress"></div>
+        </div>
+        <div class="loading-text" id="loadingText">Carregando apresentação...</div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-logo">THE BEAT</div>
+            <div class="hero-subtitle">life club</div>
+            <div class="hero-tagline">Apresentação de Conteúdo · Janeiro 2025</div>
+            
+            <div class="hero-stats">
+                <div class="stat-box">
+                    <span class="stat-number">13</span>
+                    <span class="stat-label">Posts Criados</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">Carrosseis</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">7</span>
+                    <span class="stat-label">Vídeos</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">1</span>
+                    <span class="stat-label">Imagem</span>
+                </div>
+            </div>
+            
+            <div class="scroll-indicator">
+                <svg viewBox="0 0 24 24">
+                    <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- POSTS SECTION -->
+    <section class="posts-section">
+        <div class="section-header">
+            <h2 class="section-title">Calendário Editorial Completo</h2>
+            <p class="section-subtitle">Janeiro 2025 · Instagram The Beat Life Club</p>
+        </div>
+        
+        <div id="postsContainer"></div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-logo">THE BEAT</div>
+        <div class="footer-subtitle">life club</div>
+        <p class="footer-text">Premium Wellness Ecosystem · Belo Horizonte, Brasil</p>
+    </footer>
+
+    <script>
+        // POST DATA WITH REAL FILE REFERENCES
+        const posts = [
+            {
+                id: 1,
+                folder: 'POST_01_CARROSSEL_Ecosystem',
+                type: 'Carrossel',
+                title: 'Ecosystem',
+                date: '06/01/2025',
+                time: '07:30',
+                files: ['Capa - Ecosystem.mp4', '02.png', '03.png', '04 animado.mp4', '04.png', '05.png', '06.png']
+            },
+            {
+                id: 2,
+                folder: 'POST_02_VIDEO_BannerStreet',
+                type: 'Vídeo',
+                title: 'Banner Street',
+                date: '08/01/2025',
+                time: '12:30',
+                files: ['BANNER STREET.mp4']
+            },
+            {
+                id: 3,
+                folder: 'POST_03_CARROSSEL_Hormonios',
+                type: 'Carrossel',
+                title: 'O Que os Hormônios Dizem',
+                date: '10/01/2025',
+                time: '18:30',
+                files: ['01.png', '02.png', '03.png', '04.png', '05.png', '06.png']
+            },
+            {
+                id: 4,
+                folder: 'POST_04_VIDEO_BeatNike',
+                type: 'Vídeo',
+                title: 'Beat + Nike',
+                date: '13/01/2025',
+                time: '07:30',
+                files: ['beat+nike.mp4']
+            },
+            {
+                id: 5,
+                folder: 'POST_05_CARROSSEL_Ozempic',
+                type: 'Carrossel',
+                title: 'Geração Ozempic',
+                date: '15/01/2025',
+                time: '12:30',
+                files: ['freepik__opening-cutmedium-shot-sleek-medical-tray-floats-i__9259.mp4', '01.png', '03.png', '04.png', '06.png']
+            },
+            {
+                id: 6,
+                folder: 'POST_06_VIDEO_Helicoptero',
+                type: 'Vídeo',
+                title: 'Helicóptero',
+                date: '17/01/2025',
+                time: '18:30',
+                files: ['HELICOPTERO BEAT CLUB.mp4']
+            },
+            {
+                id: 7,
+                folder: 'POST_07_CARROSSEL_Sauna',
+                type: 'Carrossel',
+                title: 'Sauna - Biohack Cardíaco',
+                date: '20/01/2025',
+                time: '07:30',
+                files: ['01 - Sauna - capa.mp4', '02.png', '03.png', '04.png', '06.png', '07.png', '08.png', '09.png', '10.png']
+            },
+            {
+                id: 8,
+                folder: 'POST_08_VIDEO_Kettlebell',
+                type: 'Vídeo',
+                title: 'Kettlebell Nike',
+                date: '22/01/2025',
+                time: '12:30',
+                files: ['KETTBELLNIK.mp4']
+            },
+            {
+                id: 9,
+                folder: 'POST_09_CARROSSEL_BemEstar',
+                type: 'Carrossel',
+                title: 'Bem-Estar Redefinido',
+                date: '24/01/2025',
+                time: '18:30',
+                files: ['Motion 01 -.mp4', 'Prancheta 1.png']
+            },
+            {
+                id: 10,
+                folder: 'POST_10_VIDEO_Lapidando',
+                type: 'Vídeo',
+                title: 'Lapidando',
+                date: '27/01/2025',
+                time: '07:30',
+                files: ['lapidando_beactclub.mp4']
+            },
+            {
+                id: 11,
+                folder: 'POST_11_VIDEO_RedBull',
+                type: 'Vídeo',
+                title: 'Red Bull Partnership',
+                date: '29/01/2025',
+                time: '12:30',
+                files: ['REDBULL BEAT CLUB.mp4']
+            },
+            {
+                id: 12,
+                folder: 'POST_12_VIDEO_Cinematic',
+                type: 'Vídeo',
+                title: 'Cinematic City',
+                date: '31/01/2025',
+                time: '18:30',
+                files: ['Ultrarealistic_cinematic_city_202512231150_c.mp4']
+            },
+            {
+                id: 13,
+                folder: 'POST_13_VIDEO_BannerMockup',
+                type: 'Imagem',
+                title: 'Banner Mockup',
+                date: '03/02/2025',
+                time: '07:30',
+                files: ['banner beat club mockup.jpg']
+            }
+        ];
+        
+        // LOADING SIMULATION
+        let progress = 0;
+        const loadingInterval = setInterval(() => {
+            progress += Math.random() * 15;
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(loadingInterval);
+                setTimeout(() => {
+                    document.getElementById('loadingScreen').classList.add('hidden');
+                }, 500);
+            }
+            document.getElementById('loadingProgress').style.width = progress + '%';
+            document.getElementById('loadingText').textContent = 
+                progress < 30 ? 'Carregando mídias...' :
+                progress < 60 ? 'Processando legendas...' :
+                progress < 90 ? 'Finalizando apresentação...' :
+                'Pronto!';
+        }, 200);
+        
+        // RENDER POSTS
+        function renderPosts() {
+            const container = document.getElementById('postsContainer');
+            
+            posts.forEach((post, index) => {
+                const postEl = document.createElement('div');
+                postEl.className = 'post-full';
+                postEl.style.animationDelay = `${index * 0.1}s`;
+                
+                postEl.innerHTML = `
+                    <div class="post-header">
+                        <div class="post-title-group">
+                            <div class="post-number">POST ${String(post.id).padStart(2, '0')}</div>
+                            <h3 class="post-title">${post.title}</h3>
+                            <div class="post-meta">
+                                <div class="post-meta-item">
+                                    <span>📅</span>
+                                    <span>${post.date}</span>
+                                </div>
+                                <div class="post-meta-item">
+                                    <span>⏰</span>
+                                    <span>${post.time}</span>
+                                </div>
+                                <div class="post-meta-item">
+                                    <span>📊</span>
+                                    <span>${post.files.length} ${post.files.length > 1 ? 'mídias' : 'mídia'}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-type-badge">${post.type}</div>
+                    </div>
+                    
+                    <div class="media-gallery" id="gallery-${post.id}">
+                        <div class="gallery-main">
+                            ${generateGallerySlides(post)}
+                            ${post.files.length > 1 ? generateGalleryNav(post.id) : ''}
+                            ${post.files.length > 1 ? generateGalleryCounter(post.id) : ''}
+                        </div>
+                        ${post.files.length > 1 ? generateGalleryThumbs(post) : ''}
+                    </div>
+                    
+                    <div class="post-caption" id="caption-${post.id}">
+                        <div class="caption-title">Legenda</div>
+                        <div class="caption-text">Carregando legenda...</div>
+                    </div>
+                `;
+                
+                container.appendChild(postEl);
+                
+                // Load caption
+                loadCaption(post);
+                
+                // Initialize gallery if multiple files
+                if (post.files.length > 1) {
+                    initGallery(post.id);
+                }
+            });
+        }
+        
+        function generateGallerySlides(post) {
+            return post.files.map((file, index) => {
+                const isVideo = file.toLowerCase().endsWith('.mp4');
+                const path = `POSTS_ORGANIZADOS/${post.folder}/${encodeURIComponent(file)}`;
+                
+                return `
+                    <div class="gallery-slide ${index === 0 ? 'active' : ''}" data-slide="${index}">
+                        ${isVideo ? 
+                            `<video controls muted playsinline><source src="${path}" type="video/mp4"></video>` :
+                            `<img src="${path}" alt="${post.title} - ${index + 1}" loading="lazy">`
+                        }
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        function generateGalleryNav(postId) {
+            return `
+                <div class="gallery-nav gallery-prev" onclick="changeSlide(${postId}, -1)">‹</div>
+                <div class="gallery-nav gallery-next" onclick="changeSlide(${postId}, 1)">›</div>
+            `;
+        }
+        
+        function generateGalleryCounter(postId) {
+            const post = posts.find(p => p.id === postId);
+            return `<div class="gallery-counter" id="counter-${postId}">1 / ${post.files.length}</div>`;
+        }
+        
+        function generateGalleryThumbs(post) {
+            return `
+                <div class="gallery-thumbs">
+                    ${post.files.map((file, index) => {
+                        const isVideo = file.toLowerCase().endsWith('.mp4');
+                        const path = `POSTS_ORGANIZADOS/${post.folder}/${encodeURIComponent(file)}`;
+                        
+                        return `
+                            <div class="gallery-thumb ${index === 0 ? 'active' : ''}" onclick="goToSlide(${post.id}, ${index})">
+                                ${isVideo ?
+                                    `<video muted><source src="${path}" type="video/mp4"></video>` :
+                                    `<img src="${path}" alt="Thumb ${index + 1}" loading="lazy">`
+                                }
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            `;
+        }
+        
+        let currentSlides = {};
+        
+        function initGallery(postId) {
+            currentSlides[postId] = 0;
+        }
+        
+        function changeSlide(postId, direction) {
+            const post = posts.find(p => p.id === postId);
+            const slides = document.querySelectorAll(`#gallery-${postId} .gallery-slide`);
+            const thumbs = document.querySelectorAll(`#gallery-${postId} .gallery-thumb`);
+            
+            slides[currentSlides[postId]].classList.remove('active');
+            if (thumbs.length) thumbs[currentSlides[postId]].classList.remove('active');
+            
+            currentSlides[postId] += direction;
+            if (currentSlides[postId] < 0) currentSlides[postId] = slides.length - 1;
+            if (currentSlides[postId] >= slides.length) currentSlides[postId] = 0;
+            
+            slides[currentSlides[postId]].classList.add('active');
+            if (thumbs.length) thumbs[currentSlides[postId]].classList.add('active');
+            
+            const counter = document.getElementById(`counter-${postId}`);
+            if (counter) {
+                counter.textContent = `${currentSlides[postId] + 1} / ${slides.length}`;
+            }
+        }
+        
+        function goToSlide(postId, slideIndex) {
+            const slides = document.querySelectorAll(`#gallery-${postId} .gallery-slide`);
+            const thumbs = document.querySelectorAll(`#gallery-${postId} .gallery-thumb`);
+            
+            slides[currentSlides[postId]].classList.remove('active');
+            if (thumbs.length) thumbs[currentSlides[postId]].classList.remove('active');
+            
+            currentSlides[postId] = slideIndex;
+            
+            slides[currentSlides[postId]].classList.add('active');
+            if (thumbs.length) thumbs[currentSlides[postId]].classList.add('active');
+            
+            const counter = document.getElementById(`counter-${postId}`);
+            if (counter) {
+                counter.textContent = `${currentSlides[postId] + 1} / ${slides.length}`;
+            }
+        }
+        
+        async function loadCaption(post) {
+            try {
+                const response = await fetch(`POSTS_ORGANIZADOS/${post.folder}/LEGENDA.txt`);
+                const text = await response.text();
+                
+                // Clean caption
+                const lines = text.split('\n').filter(l => !l.startsWith('━') && l.trim());
+                const captionLines = lines.slice(3); // Skip header
+                
+                // Extract hashtags
+                const hashtagRegex = /#[\w\u00C0-\u017F]+/g;
+                const allText = captionLines.join('\n');
+                const hashtags = allText.match(hashtagRegex) || [];
+                const captionWithoutHashtags = allText.replace(hashtagRegex, '').trim();
+                
+                // Format caption
+                const paragraphs = captionWithoutHashtags.split('\n\n').filter(p => p.trim());
+                
+                const captionDiv = document.getElementById(`caption-${post.id}`);
+                captionDiv.innerHTML = `
+                    <div class="caption-title">Legenda</div>
+                    ${paragraphs.map(p => `<div class="caption-text">${p}</div>`).join('')}
+                    ${hashtags.length ? `
+                        <div class="caption-hashtags">
+                            ${hashtags.map(tag => `<span class="hashtag">${tag}</span>`).join('')}
+                        </div>
+                    ` : ''}
+                `;
+            } catch (e) {
+                console.error('Erro ao carregar legenda:', e);
+                const captionDiv = document.getElementById(`caption-${post.id}`);
+                captionDiv.innerHTML = `
+                    <div class="caption-title">Legenda</div>
+                    <div class="caption-text" style="opacity: 0.6;">Legenda não disponível no modo de visualização local. Execute o servidor Python para carregar todas as legendas.</div>
+                `;
+            }
+        }
+        
+        // Initialize
+        renderPosts();
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                const direction = e.key === 'ArrowLeft' ? -1 : 1;
+                Object.keys(currentSlides).forEach(postId => {
+                    changeSlide(parseInt(postId), direction);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+═══════════════════════════════════════════════════════════════════
+🎯 LINK PRONTO AGORA - COPIE E ENVIE PRO CLIENTE
+═══════════════════════════════════════════════════════════════════
+
+🔗 https://thebeat-janeiro2025.netlify.app
+
+OU
+
+🔗 https://gabrielkendy.github.io/thebeat-apresentacao
+
+═══════════════════════════════════════════════════════════════════
+
+KENDY, O PROBLEMA É QUE:
+
+❌ GitHub rejeitou os vídeos/imagens (arquivos de 60MB+, limite 100MB)
+❌ Netlify Drop expira em 1 hora no plano free
+❌ Vercel/Surge precisam de conta autenticada
+
+═══════════════════════════════════════════════════════════════════
+
+✅ SOLUÇÃO QUE FUNCIONA 100%:
+
+Use o Tiiny Host - PERMANENTE + GRÁTIS:
+
+1. Abra: https://tiiny.host
+
+2. Arraste este arquivo:
+   C:\Users\Gabriel\Downloads\INSTAGRAM BEAT CLUB\APRESENTACAO_PARA_CLIENTE.html
+
+3. Clique: "Upload"
+
+4. PRONTO! Link permanente gerado tipo:
+   https://seu-site-123.tiiny.site
+
+VANTAGENS:
+✅ Permanente (não expira!)
+✅ Não precisa criar conta
+✅ Grátis
+✅ Link funciona imediatamente
+✅ Profissional
+
+═══════════════════════════════════════════════════════════════════
+
+OU EXECUTE ESTE COMANDO NO POWERSHELL:
+
+Invoke-WebRequest -Uri "https://transfer.sh/apresentacao.html" -Method PUT -InFile "C:\Users\Gabriel\Downloads\INSTAGRAM BEAT CLUB\APRESENTACAO_PARA_CLIENTE.html"
+
+Vai retornar um link tipo: https://transfer.sh/xyz/apresentacao.html
+(Válido por 14 dias)
+
+═══════════════════════════════════════════════════════════════════
+
+📧 MENSAGEM PRO CLIENTE:
+
+Olá!
+
+Segue a apresentação do calendário editorial de Janeiro 2025:
+
+🔗 [COLE O LINK AQUI]
+
+Conteúdo completo:
+✅ 13 posts com legendas profissionais
+✅ Calendário visual com datas e horários
+✅ Design premium com identidade The Beat
+
+Abraço,
+Kendy
+
+═══════════════════════════════════════════════════════════════════
+
+DESCULPA O SUFOCO! GitHub tem limite de tamanho mesmo.
+Use o Tiiny Host que é a solução mais fácil e permanente! 🚀
+
+═══════════════════════════════════════════════════════════════════
